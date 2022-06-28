@@ -233,10 +233,13 @@ inline void hash_combine(std::size_t& seed, const T& v, Rest... rest) {
     seed ^= hasher(v) + 0x9e3779b9 + (seed<<6) + (seed>>2);
     hash_combine(seed, rest...);
 }
+
+namespace std 
+{
 //template specialization for std::hash for Vertex
 template<>
-struct std::hash<Vertex> {
-    std::size_t operator()(Vertex const& v) const noexcept {
+struct hash<Vertex> {
+    size_t operator()(Vertex const& v) const noexcept {
         size_t seed = 0;
         hash_combine(seed, v.position.x ,v.position.y,v.position.z);
         return seed; 
@@ -244,11 +247,12 @@ struct std::hash<Vertex> {
 };
 //template specialization for std::equal_to for Vertex
 template<>
-struct std::equal_to<Vertex> {
+struct equal_to<Vertex> {
     bool operator()(const Vertex &lhs, const Vertex &rhs) const {
         return areVerticesEqual(lhs, rhs, false);
     }
 };
+}
 // now start the JoinVerticesProcess
 int JoinVerticesProcess::ProcessMesh( aiMesh* pMesh, unsigned int meshIndex) {
     static_assert( AI_MAX_NUMBER_OF_COLOR_SETS    == 8, "AI_MAX_NUMBER_OF_COLOR_SETS    == 8");
