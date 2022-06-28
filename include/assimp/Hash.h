@@ -96,7 +96,7 @@ inline uint32_t SuperFastHash (const char * data, uint32_t len = 0, uint32_t has
     switch (rem) {
         case 3: hash += get16bits (data);
                 hash ^= hash << 16;
-                hash ^= abs(data[sizeof(uint16_t)]) << 18;
+                hash ^= (int)std::abs(data[sizeof(uint16_t)]) << 18;
                 hash += hash >> 11;
                 break;
         case 2: hash += get16bits (data);
