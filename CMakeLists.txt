@@ -360,7 +360,7 @@ ELSEIF(MSVC)
   ENDIF()
   # supress warning for double to float conversion if Double precision is activated
   ADD_COMPILE_OPTIONS(/wd4244)
-  SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /D_DEBUG /Zi /Od")
+  SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /Zi /Od")
   # Allow user to disable PDBs
   if(ASSIMP_INSTALL_PDB)
     SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /Zi")
